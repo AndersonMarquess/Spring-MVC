@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	@RequestMapping("/")
-	public void Index() {
+	public String Index() {
 		System.out.println("Acessando o Index");
+		return "home";//Não precisa do .jsp, ele já é o padrão escolhido na nossa AppWebConfiguration
 	}
 }

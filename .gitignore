@@ -32,3 +32,4 @@
 ### outros ###
 /out/
 */.vscode/
+.tern-project
