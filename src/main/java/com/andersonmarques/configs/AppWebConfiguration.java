@@ -6,9 +6,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.andersonmarques.controllers.HomeController;
+import com.andersonmarques.daos.ProdutoDao;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class})//Classes de controle
+@ComponentScan(basePackageClasses={HomeController.class, ProdutoDao.class})//Classes componentes/bean
 public class AppWebConfiguration {
 	
 	/*Informa onde procurar as páginas*/

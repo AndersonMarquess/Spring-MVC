@@ -14,7 +14,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		//Classes de configuração
-		Class<?>[] configs = {AppWebConfiguration.class};
+		Class<?>[] configs = {AppWebConfiguration.class, JPAConfiguration.class};
 		return configs;
 	}
 
