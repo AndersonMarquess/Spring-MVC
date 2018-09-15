@@ -33,7 +33,7 @@ public class ProdutosController {
 	}
 	
 	@RequestMapping("/form")
-	public ModelAndView form() {
+	public ModelAndView form(Produto produto) {
 		ModelAndView modelAndView = new ModelAndView("produtos/form");
 		modelAndView.addObject("tipos", TipoPreco.values());
 		
@@ -44,7 +44,7 @@ public class ProdutosController {
 	public ModelAndView insert(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttr) {
 		//Validação feita na classe ProdutoValidation...
 		if(result.hasErrors()) {
-			return form();
+			return form(produto);//Com o <form:input/> recuperamos os dados já informados
 		}
 		
 		produtoDao.insert(produto);
