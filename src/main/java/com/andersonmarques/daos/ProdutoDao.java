@@ -1,5 +1,7 @@
 package com.andersonmarques.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,5 +19,10 @@ public class ProdutoDao {
 	
 	public void insert(Produto produto) {
 		entityManager.persist(produto);
+	}
+
+	public List<Produto> findAll() {
+		String jpql = "SELECT p FROM Produto p";
+		return entityManager.createQuery(jpql, Produto.class).getResultList();
 	}
 }

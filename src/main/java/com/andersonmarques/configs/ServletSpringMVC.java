@@ -1,5 +1,8 @@
 package com.andersonmarques.configs;
 
+import javax.servlet.Filter;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 //Configurações do SpringMVC
@@ -24,4 +27,12 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		return endpoints;
 	}
 
+	/* Encode padrão para comunicação */
+	@Override
+	protected Filter[] getServletFilters() {
+		CharacterEncodingFilter encode = new CharacterEncodingFilter("UTF-8");
+		Filter[] filtros = {encode};
+		
+		return filtros;
+	}
 }
