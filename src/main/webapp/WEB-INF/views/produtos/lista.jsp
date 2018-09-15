@@ -11,6 +11,10 @@
 	
 	<h2>Lista de produtos</h2>
 	
+	<div>
+		${sucesso}
+	</div>
+	
 	<table>
 		<tr>
 			<td>Título</td>
