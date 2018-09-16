@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.andersonmarques.daos.ProdutoDao;
+import com.andersonmarques.infra.FileSaver;
 import com.andersonmarques.models.Produto;
 import com.andersonmarques.models.TipoPreco;
 import com.andersonmarques.validations.ProdutoValidation;
@@ -26,6 +28,8 @@ public class ProdutosController {
 	
 	@Autowired
 	private ProdutoDao produtoDao;
+	@Autowired
+	private FileSaver fileSaver;
 	
 	@InitBinder
 	public void InitBinder(WebDataBinder binder) {
@@ -41,11 +45,17 @@ public class ProdutosController {
 	}
 	
 	@PostMapping()
-	public ModelAndView insert(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttr) {
+	public ModelAndView insert(MultipartFile sumario, @Valid Produto produto,
+						BindingResult result, RedirectAttributes redirectAttr) throws Exception {
+
 		//Validação feita na classe ProdutoValidation...
 		if(result.hasErrors()) {
 			return form(produto);//Com o <form:input/> recuperamos os dados já informados
 		}
+
+		String path = fileSaver.write("arquivos-sumario", sumario);
+		produto.setSumarioPath(path);
+		
 		
 		produtoDao.insert(produto);
 		//Após o post, faz o redirect para o endpoint produtos

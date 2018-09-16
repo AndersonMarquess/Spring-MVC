@@ -8,14 +8,17 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.andersonmarques.controllers.HomeController;
 import com.andersonmarques.daos.ProdutoDao;
+import com.andersonmarques.infra.FileSaver;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class, ProdutoDao.class})//Classes componentes/bean
+@ComponentScan(basePackageClasses={HomeController.class, ProdutoDao.class, FileSaver.class})//Classes componentes/bean
 public class AppWebConfiguration {
 	
 	/*Informa onde procurar as páginas*/
@@ -53,5 +56,11 @@ public class AppWebConfiguration {
 	    formatterRegistrar.registerFormatters(conversionService);
 		
 		return conversionService;
+	}
+	
+	/*Para configurar os arquivos de múltiplos formatos*/
+	@Bean
+	public MultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
 	}
 }

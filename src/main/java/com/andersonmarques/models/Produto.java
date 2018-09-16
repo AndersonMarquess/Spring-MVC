@@ -24,6 +24,8 @@ public class Produto {
 	@DateTimeFormat
 	private Calendar dataLancamento;
 	
+	private String sumarioPath;
+	
 	/*Cria uma tabela extra para preços e já relaciona com a tabela produto*/
 	@ElementCollection
 	private List<Preco> precos;
@@ -70,6 +72,14 @@ public class Produto {
 
 	public void setDataLancamento(Calendar dataLancamento) {
 		this.dataLancamento = dataLancamento;
+	}
+
+	public String getSumarioPath() {
+		return sumarioPath;
+	}
+
+	public void setSumarioPath(String sumarioPath) {
+		this.sumarioPath = sumarioPath;
 	}
 
 	@Override

@@ -15,7 +15,7 @@
 <body>
 	<!-- PC = ProdutoController # nome do método que será chamado -->
 	<%-- <form:form action="${s:mvcUrl('PC#insert').build() }" method="POST" modelAttribute="produto"> --%>
-	<form:form action="/ProjetoSpringMVC/produtos" method="POST" modelAttribute="produto">
+	<form:form action="/ProjetoSpringMVC/produtos" method="POST" modelAttribute="produto" enctype="multipart/form-data">
 		<div>
 			<label>Título</label>
 			<form:input path="titulo"/>
@@ -47,6 +47,11 @@
 				<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}"/>
 			</div>
 		</c:forEach>
+		
+		<div>
+			<label>Sumário</label>
+			<input name="sumario" type="file">
+		</div>
 		
 		<button type="submit">Cadastrar</button>
 	</form:form>
