@@ -1,29 +1,35 @@
 package com.andersonmarques.models;
 
+import java.math.BigDecimal;
+
 public class CarrinhoItem {
 
 	private Produto produto;
 	private TipoPreco tipoPreco;
 
-	public CarrinhoItem(Produto p, TipoPreco tipo) {
-		this.produto = p;
+	public CarrinhoItem(Produto produto, TipoPreco tipo) {
+		this.produto = produto;
 		this.tipoPreco = tipo;
 	}
-
-	public Produto getP() {
+	
+	public Produto getProduto() {
 		return produto;
 	}
 
-	public void setP(Produto p) {
-		this.produto = p;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
-	public TipoPreco getTipo() {
+	public TipoPreco getTipoPreco() {
 		return tipoPreco;
 	}
 
-	public void setTipo(TipoPreco tipo) {
-		this.tipoPreco = tipo;
+	public void setTipoPreco(TipoPreco tipoPreco) {
+		this.tipoPreco = tipoPreco;
+	}
+
+	public BigDecimal getPreco() {
+		return produto.getPrecoPara(tipoPreco);
 	}
 
 	@Override
@@ -52,5 +58,10 @@ public class CarrinhoItem {
 		if (tipoPreco != other.tipoPreco)
 			return false;
 		return true;
+	}
+
+	public BigDecimal getTotal(int quantidade) {
+		//Preço * quantidade
+		return this.getPreco().multiply(new BigDecimal(quantidade));
 	}
 }

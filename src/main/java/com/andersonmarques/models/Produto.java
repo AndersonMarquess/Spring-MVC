@@ -1,5 +1,6 @@
 package com.andersonmarques.models;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
@@ -88,6 +89,12 @@ public class Produto {
 				+ dataLancamento +"]";
 	}
 
+	public BigDecimal getPrecoPara(TipoPreco tipoPreco) {
+		return precos.stream()
+				.filter(p -> p.getTipo().equals(tipoPreco))
+				.findFirst().get().getValor();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -112,6 +119,6 @@ public class Produto {
 			return false;
 		return true;
 	}
-	
-	
+    
+    
 }

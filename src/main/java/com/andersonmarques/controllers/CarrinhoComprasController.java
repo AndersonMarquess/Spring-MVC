@@ -3,6 +3,7 @@ package com.andersonmarques.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
@@ -26,10 +27,10 @@ public class CarrinhoComprasController {
 	private CarrinhoCompras carrinho;
 
 	@PostMapping("/add")
-	public ModelAndView insert(Integer produtoId, TipoPreco tipo) {
-		ModelAndView model = new ModelAndView("redirect:/produtos");//Get com redirect no endpoint /produtos
+	public ModelAndView insert(Integer produtoId, TipoPreco tipoPreco) {
+		ModelAndView model = new ModelAndView("redirect:/carrinho");//Get com redirect no endpoint /carrinho
 		
-		CarrinhoItem carrinhoItem = criaItem(produtoId, tipo);
+		CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);
 		carrinho.add(carrinhoItem);
 		return model;
 	}
@@ -39,11 +40,16 @@ public class CarrinhoComprasController {
 	 * Unindo produto e Tipo Preço.
 	 * 
 	 * @param produtoId
-	 * @param tipo
+	 * @param tipoPreco
 	 * @return
 	 */
-	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipo) {
+	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
 		Produto p = produtoDao.findById(produtoId);
-		return new CarrinhoItem(p, tipo);
+		return new CarrinhoItem(p, tipoPreco);
+	}
+	
+	@GetMapping
+	public ModelAndView itens() {
+		return new ModelAndView("carrinho/itens");
 	}
 }
