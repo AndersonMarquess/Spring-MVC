@@ -11,6 +11,8 @@ import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.andersonmarques.controllers.HomeController;
@@ -18,8 +20,9 @@ import com.andersonmarques.daos.ProdutoDao;
 import com.andersonmarques.infra.FileSaver;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class, ProdutoDao.class, FileSaver.class})//Classes componentes/bean
-public class AppWebConfiguration {
+@ComponentScan(basePackageClasses={HomeController.class, 
+		ProdutoDao.class, FileSaver.class})//Classes componentes/bean
+public class AppWebConfiguration implements WebMvcConfigurer {
 	
 	/*Informa onde procurar as páginas*/
 	@Bean//Bean para informar que este método é gerenciado pelo Spring
@@ -63,4 +66,11 @@ public class AppWebConfiguration {
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
+	
+	/*Habilita a pasta resources com os arquivos CSS, JS, IMG...*/
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations(
+                "/resources/");
+    }
 }

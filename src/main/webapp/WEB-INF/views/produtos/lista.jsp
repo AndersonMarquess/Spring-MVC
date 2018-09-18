@@ -24,7 +24,7 @@
 		
 		<c:forEach items="${produtos}" var="produto">
 			<tr>
-				<td>${produto.titulo}</td>
+				<td><a href="/ProjetoSpringMVC/produtos/detalhe/${produto.id}">${produto.titulo}</a></td>
 				<td>${produto.descricao}</td>
 				<td>${produto.paginas}</td>
 			</tr>

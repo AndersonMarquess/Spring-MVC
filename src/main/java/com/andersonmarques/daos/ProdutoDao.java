@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,5 +25,14 @@ public class ProdutoDao {
 	public List<Produto> findAll() {
 		String jpql = "SELECT p FROM Produto p";
 		return entityManager.createQuery(jpql, Produto.class).getResultList();
+	}
+
+	public Produto findById(Integer id) {
+		//JOIN FETCH trás o conteúdo da lista de preços
+		String jpql = "SELECT p FROM Produto p JOIN FETCH p.precos WHERE p.id = :pID";
+		TypedQuery<Produto> p = entityManager.createQuery(jpql, Produto.class)
+											 .setParameter("pID", id);
+		
+		return p.getSingleResult();
 	}
 }
