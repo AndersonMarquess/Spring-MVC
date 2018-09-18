@@ -18,10 +18,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.andersonmarques.controllers.HomeController;
 import com.andersonmarques.daos.ProdutoDao;
 import com.andersonmarques.infra.FileSaver;
+import com.andersonmarques.models.CarrinhoCompras;
 
 @EnableWebMvc
 @ComponentScan(basePackageClasses={HomeController.class, 
-		ProdutoDao.class, FileSaver.class})//Classes componentes/bean
+		ProdutoDao.class, FileSaver.class, CarrinhoCompras.class})//Classes componentes/bean
 public class AppWebConfiguration implements WebMvcConfigurer {
 	
 	/*Informa onde procurar as páginas*/
@@ -31,6 +32,9 @@ public class AppWebConfiguration implements WebMvcConfigurer {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");//Seta o padrão das extensões das páginas
+		
+		//O Bean fica disponível na JSP, nome da classe com a primeira letra em minúsculo. 
+		resolver.setExposedContextBeanNames("carrinhoCompras");
 		
 		return resolver;
 	}
