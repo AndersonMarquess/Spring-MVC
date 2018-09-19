@@ -7,14 +7,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 @Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION)
+@Scope(value=WebApplicationContext.SCOPE_SESSION,
+	proxyMode=ScopedProxyMode.TARGET_CLASS)
+//Com o proxy ele se encarrega de colocar o escopo correto em todos os controllers.
 public class CarrinhoCompras implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<>();
 
 	public void add(CarrinhoItem item) {
@@ -57,5 +60,11 @@ public class CarrinhoCompras implements Serializable {
 			total = total.add(getTotal(item));
 		}
 		return total;
+	}
+
+	public void remover(Integer produtoId, TipoPreco tipoPreco) {
+		Produto p = new Produto();
+		p.setId(produtoId);
+		itens.remove(new CarrinhoItem(p, tipoPreco));
 	}
 }
