@@ -33,7 +33,7 @@
 
     <header id="layout-header">
         <div class="clearfix container">
-            <a href="/" id="logo"> </a>
+            <a href="/ProjetoSpringMVC/" id="logo"> </a>
             <div id="header-content">
                 <nav id="main-nav">
 

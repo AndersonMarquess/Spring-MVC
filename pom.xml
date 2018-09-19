@@ -110,7 +110,20 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.9.6</version>
 		</dependency>
-		
+				
+		<!-- Cache -->
+		<dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>26.0-jre</version>
+        </dependency>
+        
+        <!-- Na versão 5.0.9 o suporte ao guava foi retirado -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.0.9.RELEASE</version>
+        </dependency>
 	</dependencies>
 
 	<build>
