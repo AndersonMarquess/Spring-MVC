@@ -1,8 +1,10 @@
 package com.andersonmarques.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class CarrinhoItem {
+public class CarrinhoItem implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Produto produto;
 	private TipoPreco tipoPreco;
