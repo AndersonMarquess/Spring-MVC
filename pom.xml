@@ -45,7 +45,7 @@
 			<artifactId>jstl-impl</artifactId>
 			<version>1.2</version>
 		</dependency>
-			
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -73,57 +73,71 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.6.1</version>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.1</version>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!-- Validação -->
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
-		    <groupId>javax.validation</groupId>
-		    <artifactId>validation-api</artifactId>
-		    <version>2.0.1.Final</version>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
 		</dependency>
-		
+
 		<!-- Converte as classe em JSON -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.9.6</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.6</version>
 		</dependency>
-				
+
 		<!-- Cache -->
 		<dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>26.0-jre</version>
-        </dependency>
-        
-        <!-- Na versão 5.0.9 o suporte ao guava foi retirado -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>4.0.9.RELEASE</version>
-        </dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>26.0-jre</version>
+		</dependency>
+
+		<!-- Na versão 5.0.9 o suporte ao guava foi retirado -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.0.9.RELEASE</version>
+		</dependency>
+
+		<!-- Segurança -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
