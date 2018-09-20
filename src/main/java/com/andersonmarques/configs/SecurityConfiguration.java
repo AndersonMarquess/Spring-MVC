@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.andersonmarques.daos.UsuarioDao;
 
@@ -21,13 +22,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/produtos/form").hasRole("ADMIN")
 			.antMatchers("/resources/**").permitAll()
-			.antMatchers("/carrinho").permitAll()
+			.antMatchers("/carrinho/**").permitAll()
 			.antMatchers(HttpMethod.POST,"/produtos").hasRole("ADMIN")
 			.antMatchers(HttpMethod.GET, "/produtos").permitAll()
 			.antMatchers("/produtos/**").permitAll()
 			.antMatchers("/").permitAll()
 			.anyRequest().authenticated()
-			.and().formLogin();
+			.and()
+				.formLogin()
+				.loginPage("/login")
+				.permitAll()
+			.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 	
 	@Override

@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<!-- Gera o input com a configuração do CSRF -->
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html>
@@ -74,7 +76,7 @@
 
         <section class="buy-options clearfix">
         	<!-- <c:url value='/carrinho/add'/> = ProjetoSpringMVC/carrinho/add -->
-            <form action="<c:url value='/carrinho/add'/>" method="post" class="container">
+            <form:form servletRelativeAction="/carrinho/add" method="post" cssClass="container">
                 <input type="hidden" value="${produto.id }" name="produtoId">
 
                 <ul id="variants" class="clearfix">
@@ -91,7 +93,7 @@
 
                 </ul>
                 <button type="submit" class="submit-image icon-basket-alt" title="Compre Agora '${produto.titulo}'"></button>
-            </form>
+            </form:form>
         </section>
 
         <div class="container">

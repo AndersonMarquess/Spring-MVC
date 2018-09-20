@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 
 <!DOCTYPE html>
 <html>
@@ -35,8 +36,11 @@
             <div id="header-content">
                 <nav id="main-nav">
                     <ul class="clearfix">
-                        <li><a href="/ProjetoSpringMVC/produtos" rel="nofollow">Listar produtos</a></li>
-                        <li><a href="/ProjetoSpringMVC/produtos/form" rel="nofollow">Cadastrar produto</a></li>
+                    	<!-- Só exibe os itens se o usuário estiver autenticado -->
+                    	<security:authorize access="hasRole('ROLE_ADMIN')">
+	                        <li><a href="/ProjetoSpringMVC/produtos" rel="nofollow">Listar produtos</a></li>
+	                        <li><a href="/ProjetoSpringMVC/produtos/form" rel="nofollow">Cadastrar produto</a></li>
+                    	</security:authorize>
                         <li><a href="/cart" rel="nofollow">Carrinho</a></li>
                     </ul>
                 </nav>

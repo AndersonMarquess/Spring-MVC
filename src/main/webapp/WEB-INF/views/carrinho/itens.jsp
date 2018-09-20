@@ -96,6 +96,8 @@
                     	<!--CCC#remover = CarrinhoComprasController().remover(item.produto.id, item.tipoPreco)-->
                         <form action="${s:mvcUrl('CCC#remover').arg(0, item.produto.id).arg(1, item.tipoPreco).build()}"  method="POST">
                             <input type="image" src="${contextPath}/resources/imagens/excluir.png" alt="Excluir" title="Excluir" />
+                            <!-- corrige o problema de CSRF ou Use form:form-->
+                            <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
                         </form>
                     </td>
                 </tr>

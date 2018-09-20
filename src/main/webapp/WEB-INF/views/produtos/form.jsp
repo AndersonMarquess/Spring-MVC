@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 
 <!-- Usado para exibir a field.required -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -28,6 +29,18 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="/ProjetoSpringMVC/produtos/form">Cadastrar produto</a>
 	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/ProjetoSpringMVC/logout">Sair</a>
+	      </li>
+	    </ul>
+	    <ul class="navbar-nav ml-auto">
+	    	<li>
+	    		<a class="nav-link" href="#">
+	    			<!-- Mostra o nome de usuário logado --> 
+	    			Usuário: <security:authentication property="principal" var="usuario"/>
+	    			${usuario.username }
+    			</a>
+	    	</li>
 	    </ul>
 	  </div>
 	</nav>
