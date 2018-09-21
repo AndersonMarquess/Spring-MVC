@@ -35,9 +35,9 @@
 	    	<li>
 	    		<a class="nav-link" href="#">
 	    			<!-- Mostra o nome de usuário logado --> 
-	    			Usuário: <security:authentication property="principal" var="usuario"/>
+	    			<security:authentication property="principal" var="usuario"/>
 	    			<c:if test="usuario.username != null">
-	    				${usuario.username }
+	    				Usuário: ${usuario.username }
 	    			</c:if>
     			</a>
 	    	</li>
