@@ -3,8 +3,10 @@ package com.andersonmarques.configs;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -22,14 +24,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JPAConfiguration {
 	
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean containerFactoryBean = 
 				new LocalContainerEntityManagerFactoryBean();
 		
+		containerFactoryBean.setDataSource(dataSource);
+		
 		JpaVendorAdapter vendorAdaptor = new HibernateJpaVendorAdapter();
 		containerFactoryBean.setJpaVendorAdapter(vendorAdaptor);
-		
-		containerFactoryBean.setDataSource(getCaminhoDB());
 		containerFactoryBean.setJpaProperties(getConfiguracaoHibernate());
 		
 		containerFactoryBean.setPackagesToScan("com.andersonmarques.models");
@@ -50,9 +52,11 @@ public class JPAConfiguration {
 
 	/**
 	 * Retorna o caminho do banco de dados já configurado com usuário e senha.
-	 * @return
+	 * @return dataSource
 	 */
-	private DriverManagerDataSource getCaminhoDB() {
+	@Bean
+	@Profile("dev")
+	private DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUrl("jdbc:mysql://localhost/projeto-spring-mvc?serverTimezone=UTC");
 		dataSource.setUsername("root");

@@ -1,5 +1,6 @@
 package com.andersonmarques.daos;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.andersonmarques.models.Produto;
+import com.andersonmarques.models.TipoPreco;
 
 @Repository
 @Transactional
@@ -34,5 +36,14 @@ public class ProdutoDao {
 											 .setParameter("pID", id);
 		
 		return p.getSingleResult();
+	}
+	
+	public BigDecimal getSomaPorTipoPreco(TipoPreco tipoPreco) {
+		String query = "SELECT SUM (preco.valor) FROM Produto p JOIN p.precos preco WHERE preco.tipo = :pTipo";
+		String jpql = "SELECT SUM(p.precos.valor) FROM Produto p JOIN p.precos WHERE p.precos.tipo = :pTipo";
+		
+		return entityManager.createQuery(query, BigDecimal.class)
+							.setParameter("pTipo", tipoPreco)
+							.getSingleResult();
 	}
 }

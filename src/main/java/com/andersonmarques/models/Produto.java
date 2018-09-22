@@ -1,6 +1,7 @@
 package com.andersonmarques.models;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Produto {
 	
 	/*Cria uma tabela extra para preços e já relaciona com a tabela produto*/
 	@ElementCollection
-	private List<Preco> precos;
+	private List<Preco> precos = new ArrayList<>();
 	
 	public Integer getId() {
 		return id;
