@@ -39,10 +39,9 @@ public class ProdutoDao {
 	}
 	
 	public BigDecimal getSomaPorTipoPreco(TipoPreco tipoPreco) {
-		String query = "SELECT SUM (preco.valor) FROM Produto p JOIN p.precos preco WHERE preco.tipo = :pTipo";
-		String jpql = "SELECT SUM(p.precos.valor) FROM Produto p JOIN p.precos WHERE p.precos.tipo = :pTipo";
+		String jpql = "SELECT SUM (preco.valor) FROM Produto p JOIN p.precos preco WHERE preco.tipo = :pTipo";
 		
-		return entityManager.createQuery(query, BigDecimal.class)
+		return entityManager.createQuery(jpql, BigDecimal.class)
 							.setParameter("pTipo", tipoPreco)
 							.getSingleResult();
 	}
