@@ -25,7 +25,7 @@ public class ProdutoDao {
 	}
 
 	public List<Produto> findAll() {
-		String jpql = "SELECT p FROM Produto p";
+		String jpql = "SELECT DISTINCT (p) FROM Produto p JOIN FETCH p.precos";
 		return entityManager.createQuery(jpql, Produto.class).getResultList();
 	}
 

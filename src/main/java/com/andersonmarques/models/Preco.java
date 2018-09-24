@@ -22,4 +22,9 @@ public class Preco {
 	public void setTipo(TipoPreco tipo) {
 		this.tipo = tipo;
 	}
+	
+	@Override
+	public String toString() {
+		return this.tipo.name()+" - "+this.valor;
+	}
 }

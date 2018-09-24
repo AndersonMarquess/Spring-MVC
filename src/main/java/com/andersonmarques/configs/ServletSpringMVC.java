@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -38,7 +39,8 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter encode = new CharacterEncodingFilter("UTF-8");
-		Filter[] filtros = {encode};
+		//OpenEntity mantém a sessão com a db ativa até ser exibida na jsp, evitando o Lazy Initialization Exception
+		Filter[] filtros = {encode, new OpenEntityManagerInViewFilter()};
 		
 		return filtros;
 	}
