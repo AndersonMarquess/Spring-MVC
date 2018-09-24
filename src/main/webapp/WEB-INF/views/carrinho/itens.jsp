@@ -56,6 +56,8 @@
                     <td colspan="3">
                     	<form action="<c:url value='/pagamento/finalizar'/>" method="POST" >
 	                    	<input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
+                  	          <!-- corrige o problema de CSRF ou Use form:form-->
+                            <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
                     	</form>
                    	</td>
                     <td class="numeric-cell">${carrinhoCompras.total}</td>
